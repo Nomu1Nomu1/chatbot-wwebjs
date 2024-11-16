@@ -1,8 +1,6 @@
 import express from 'express';
 import whatsappClient from '../services/WhatsAppClient.js';
-import pkg from 'whatsapp-web.js';
 
-const { MessageMedia } = pkg;
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -10,8 +8,8 @@ router.get('/', (req, res) => {
 });
 
 router.post('/send-8am', async (req, res) => {
-    const phoneNumber = ;
-    const message = 'Good morning! This is a reminder to send your daily report by 8am.';
+    const phoneNumber = process.env.PHONE_NUMBER + '@c.us';
+    const message = process.env.MESSAGE_8AM;
 
     try {
         const chat = await whatsappClient.getChatById(phoneNumber);
@@ -23,8 +21,5 @@ router.post('/send-8am', async (req, res) => {
     }
 });
 
-router.post('/send-4pm', async (req, res) => {
-
-})
 
 export default router;
